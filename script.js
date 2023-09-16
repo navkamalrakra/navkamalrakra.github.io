@@ -5,6 +5,14 @@ const handleResize = (myChart) => {
     myChart.resize();
 }
 
+Array.prototype.max = function() {
+  return Math.max.apply(null, this);
+};
+
+Array.prototype.min = function() {
+  return Math.min.apply(null, this);
+};
+
 new Chart("myChart", {
   type: "line",
   data: {
@@ -20,7 +28,8 @@ new Chart("myChart", {
   options: {
     legend: {display: true},
     scales: {
-      yAxes: [{ticks: {min: 6, max:16}}],
+      yAxes: [{ticks: {min: yValues.min(), max:yValues.max()}}],
+      xAxes: [{ticks: {min: xValues.min(), max:xValues.max()}}],
     responsive: true,
     onResize: handleResize,
     maintainAspectRatio: false
