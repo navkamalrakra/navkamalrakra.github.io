@@ -1,33 +1,34 @@
-// read data.txt
-dateArr = []
-preTaxArr = []
-postTaxArr = []
-
 // Read data.txt
-async function ReadData() {
-  const response = await fetch("data.txt");
-  const data = await response.text();
-  return data;
+async function readFile() {
+  //let response = await fetch("https://raw.githubusercontent.com/navkamalrakra/navkamalrakra.github.io/master/data.txt");
+  let response = await fetch('data.txt');
+  return await response.text();
 }
 
-async function PopulateDataInArrays()
-{
-    var text = await ReadData();
-    var lines = text.split('\n');
+// // Use promise method to read data.txt
+// readFile().then(function(data){
+//   //console.log(data);
+//   return data;
+// })
 
-    for (var line = 0; line < lines.length; line++) {
-      var date = lines[line].split(',')[0];
-      var preTax = lines[line].split(',')[1];
-      var postTax = lines[line].split(',')[2];
+async function PopulateDataInArrays() {
+  var text = await readFile();
+  var lines = text.split("\n");
 
-      dateArr = [...dateArr, date.replace(/ /g,'')];
-      preTaxArr = [...preTaxArr, Number(preTax.replace(/ /g,''))];
-      postTaxArr = [...postTaxArr, Number(postTax.replace(/ /g,''))];
-    }
+  dateArr = [];
+  preTaxArr = [];
+  postTaxArr = [];
+
+  for (var line = 0; line < lines.length; line++) {
+    var date = lines[line].split(",")[0];
+    var preTax = lines[line].split(",")[1];
+    var postTax = lines[line].split(",")[2];
+
+    dateArr = [...dateArr, date.replace(/ /g, "")];
+    preTaxArr = [...preTaxArr, Number(preTax.replace(/ /g, ""))];
+    postTaxArr = [...postTaxArr, Number(postTax.replace(/ /g, ""))];
   }
-
-const handleResize = (myChart) => {
-  myChart.resize();
+  return [dateArr, preTaxArr, postTaxArr];
 }
 
 Array.prototype.max = function () {
@@ -38,27 +39,41 @@ Array.prototype.min = function () {
   return Math.min.apply(null, this);
 };
 
-PopulateDataInArrays().then(() => {});
+async function createChart() {
+  return await PopulateDataInArrays();
+}
 
-new Chart("myChart", {
-  type: "line",
-  data: {
-    labels: dateArr,
-    datasets: [{
-      fill: false,
-      lineTension: 0,
-      backgroundColor: "rgba(0,0,255,1.0)",
-      borderColor: "rgba(0,0,255,0.1)",
-      data: preTaxArr
-    }]
-  },
-  options: {
-    legend: { display: true },
-    scales: {
-      yAxes: [{ ticks: { min: preTaxArr.min(), max: preTaxArr.max() } }],
-      responsive: true,
-      onResize: handleResize,
-      maintainAspectRatio: false
-    }
-  }
-});
+
+createChart().then(function(dataArrs){
+  var dateArr = dataArrs[0];
+  var preTaxArr = dataArrs[1];
+  var postTaxArr = dataArrs[2];
+  new Chart("myChart", {
+    type: "line",
+    data: {
+      labels: dateArr,
+      datasets: [
+        {
+          fill: false,
+          lineTension: 0,
+          backgroundColor: "rgba(0,0,255,1.0)",
+          borderColor: "rgba(0,0,255,0.1)",
+          data: preTaxArr,
+        },
+      ],
+    },
+    options: {
+      legend: { display: true },
+      scales: {
+        yAxes: [{ ticks: { min: preTaxArr.min(), max: preTaxArr.max() } }],
+        responsive: true,
+        onResize: handleResize,
+        maintainAspectRatio: false,
+      },
+    },
+  });
+})
+
+const handleResize = (myChart) => {
+  myChart.resize();
+};
