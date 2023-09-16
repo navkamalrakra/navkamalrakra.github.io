@@ -43,7 +43,7 @@ function CreateChart()
     options: {
       legend: { display: true },
       scales: {
-        yAxes: [{ ticks: { min: yValues.min(), max: yValues.max() } }],
+        yAxes: [{ ticks: { min: preTaxArr.min(), max: preTaxArr.max() } }],
         responsive: true,
         onResize: handleResize,
         maintainAspectRatio: false
