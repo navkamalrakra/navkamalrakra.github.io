@@ -7,7 +7,6 @@ postTaxArr = []
 async function ReadData() {
   const response = await fetch("data.txt");
   const data = await response.text();
-  console.log(data);
   return data;
 }
 
@@ -25,14 +24,9 @@ async function PopulateDataInArrays()
       preTaxArr = [...preTaxArr, preTax.replace(/ /g,'')];
       postTaxArr = [...postTaxArr, postTax.replace(/ /g,'')];
     }
-
-    console.log("Data is populated");
-    console.log(dateArr);
-    console.log(preTaxArr);
-    console.log(postTaxArr);
   }
 
-PopulateDataInArrays().then((text) => {console.log("Data is populated")});
+await PopulateDataInArrays();
 
 const xValues = dateArr;
 const yValues = preTaxArr;
