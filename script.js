@@ -32,7 +32,7 @@ async function PopulateDataInArrays()
     console.log(postTaxArr);
   }
 
-PopulateDataInArrays();
+PopulateDataInArrays().then((text) => {console.log("Data is populated")});
 
 const xValues = dateArr;
 const yValues = preTaxArr;
