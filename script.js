@@ -66,4 +66,4 @@ Array.prototype.min = function () {
 };
 
 PopulateDataInArrays().then(() => {});
-CreateChart();
+myChart = CreateChart();
