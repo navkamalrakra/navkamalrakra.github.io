@@ -26,7 +26,7 @@ async function PopulateDataInArrays()
     }
   }
 
-await PopulateDataInArrays();
+PopulateDataInArrays().then(() => {});
 
 const xValues = dateArr;
 const yValues = preTaxArr;
