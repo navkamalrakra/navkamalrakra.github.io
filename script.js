@@ -8,12 +8,12 @@ async function ReadData() {
   const response = await fetch("data.txt");
   const data = await response.text();
   console.log(data);
-  return data;
+  return data.Resolve();
 }
 
-function PopulateDataInArrays()
+async function PopulateDataInArrays()
 {
-    var text = ReadData();
+    var text = await ReadData();
     var lines = text.split('\n');
 
     for (var line = 0; line < lines.length; line++) {
