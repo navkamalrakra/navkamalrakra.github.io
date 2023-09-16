@@ -9,11 +9,11 @@ fetch('data.txt')
 
     var lines = text.split('\n');
 
-    for(var line=0; line < lines.length; line++){
+    for (var line = 0; line < lines.length; line++) {
       var date = lines[line].split(',')[0];
       var preTax = lines[line].split(',')[1];
       var postTax = lines[line].split(',')[2];
-      
+
       dateArr = [...dateArr, date];
       preTaxArr = [...preTaxArr, preTax];
       postTaxArr = [...postTaxArr, postTax];
@@ -24,8 +24,8 @@ fetch('data.txt')
   })
 
 
-const xValues = [50, 60, 70, 80, 90, 100, 110, 120, 130, 140, 150];
-const yValues = [7, 8, 8, 9, 9, 9, 10, 11, 14, 14, 15];
+const xValues = dateArr;
+const yValues = preTaxArr;
 
 const handleResize = (myChart) => {
   myChart.resize();
@@ -55,7 +55,6 @@ new Chart("myChart", {
     legend: { display: true },
     scales: {
       yAxes: [{ ticks: { min: yValues.min(), max: yValues.max() } }],
-      xAxes: [{ ticks: { min: xValues.min(), max: xValues.max() } }],
       responsive: true,
       onResize: handleResize,
       maintainAspectRatio: false
