@@ -9,6 +9,7 @@ async function ReadData() {
     fetch('data.txt').then(x => x.text())
   ]).then(data => {
     console.log(data);
+    return data.toString();
   });
 }
 
