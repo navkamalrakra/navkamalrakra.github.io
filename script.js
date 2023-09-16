@@ -3,10 +3,17 @@ dateArr = []
 preTaxArr = []
 postTaxArr = []
 
-await fetch('data.txt')
-  .then(response => response.text())
-  .then(text => {
+// Read data.txt
+async function ReadData() {
+  const response = await fetch("data.txt");
+  const data = await response.text();
+  console.log(data);
+  return data;
+}
 
+function PopulateDataInArrays()
+{
+    var text = ReadData();
     var lines = text.split('\n');
 
     for (var line = 0; line < lines.length; line++) {
@@ -18,11 +25,14 @@ await fetch('data.txt')
       preTaxArr = [...preTaxArr, preTax];
       postTaxArr = [...postTaxArr, postTax];
     }
+
+    console.log("Data is populated");
     console.log(dateArr);
     console.log(preTaxArr);
     console.log(postTaxArr);
-  })
+  }
 
+PopulateDataInArrays();
 
 const xValues = dateArr;
 const yValues = preTaxArr;
