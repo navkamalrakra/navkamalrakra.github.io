@@ -3,7 +3,7 @@ dateArr = []
 preTaxArr = []
 postTaxArr = []
 
-fetch('data.txt')
+await fetch('data.txt')
   .then(response => response.text())
   .then(text => {
 
