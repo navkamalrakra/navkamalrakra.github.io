@@ -26,33 +26,6 @@ async function PopulateDataInArrays()
     }
   }
 
-function CreateChart()
-{
-  return new Chart("myChart", {
-    type: "line",
-    data: {
-      labels: dateArr,
-      datasets: [{
-        fill: false,
-        lineTension: 0,
-        backgroundColor: "rgba(0,0,255,1.0)",
-        borderColor: "rgba(0,0,255,0.1)",
-        data: preTaxArr
-      }]
-    },
-    options: {
-      legend: { display: true },
-      scales: {
-        yAxes: [{ ticks: { min: preTaxArr.min(), max: preTaxArr.max() } }],
-        responsive: true,
-        onResize: handleResize,
-        maintainAspectRatio: false
-      }
-    }
-  });
-
-}
-
 const handleResize = (myChart) => {
   myChart.resize();
 }
@@ -66,4 +39,26 @@ Array.prototype.min = function () {
 };
 
 PopulateDataInArrays().then(() => {});
-myChart = CreateChart();
+
+new Chart("myChart", {
+  type: "line",
+  data: {
+    labels: dateArr,
+    datasets: [{
+      fill: false,
+      lineTension: 0,
+      backgroundColor: "rgba(0,0,255,1.0)",
+      borderColor: "rgba(0,0,255,0.1)",
+      data: preTaxArr
+    }]
+  },
+  options: {
+    legend: { display: true },
+    scales: {
+      yAxes: [{ ticks: { min: preTaxArr.min(), max: preTaxArr.max() } }],
+      responsive: true,
+      onResize: handleResize,
+      maintainAspectRatio: false
+    }
+  }
+});
