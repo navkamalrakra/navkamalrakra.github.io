@@ -4,18 +4,18 @@ preTaxArr = []
 postTaxArr = []
 
 // Read data.txt
-function ReadData() {
-  Promise.all([
-    fetch('data.txt').then(x => x.text())
-  ]).then(data => {
-    console.log(data);
-    return data.toString();
-  });
+async function ReadData() {
+  fetch("data.txt")
+  .then((res) => res.text())
+  .then((text) => {
+    return text
+   })
+  .catch((e) => console.error(e));
 }
 
-function PopulateDataInArrays()
+async function PopulateDataInArrays()
 {
-    var text = ReadData();
+    var text = await ReadData();
     var lines = text.split('\n');
 
     for (var line = 0; line < lines.length; line++) {
