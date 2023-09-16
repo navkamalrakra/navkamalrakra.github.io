@@ -21,9 +21,9 @@ async function PopulateDataInArrays()
       var preTax = lines[line].split(',')[1];
       var postTax = lines[line].split(',')[2];
 
-      dateArr = [...dateArr, date];
-      preTaxArr = [...preTaxArr, preTax];
-      postTaxArr = [...postTaxArr, postTax];
+      dateArr = [...dateArr, date.replace(/ /g,'')];
+      preTaxArr = [...preTaxArr, preTax.replace(/ /g,'')];
+      postTaxArr = [...postTaxArr, postTax.replace(/ /g,'')];
     }
 
     console.log("Data is populated");
