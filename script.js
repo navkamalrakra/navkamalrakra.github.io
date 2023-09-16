@@ -1,6 +1,27 @@
+// read data.txt
+dateArr = []
+preTaxArr = []
+postTaxArr = []
+
 fetch('data.txt')
   .then(response => response.text())
-  .then(text => console.log(text))
+  .then(text => {
+
+    var lines = text.split('\n');
+
+    for(var line=0; line < lines.length; line++){
+      var date = lines[line].split(',')[0];
+      var preTax = lines[line].split(',')[1];
+      var postTax = lines[line].split(',')[2];
+      
+      dateArr = [...dateArr, date];
+      preTaxArr = [...preTaxArr, preTax];
+      postTaxArr = [...postTaxArr, postTax];
+    }
+    console.log(dateArr);
+    console.log(preTaxArr);
+    console.log(postTaxArr);
+  })
 
 
 const xValues = [50, 60, 70, 80, 90, 100, 110, 120, 130, 140, 150];
