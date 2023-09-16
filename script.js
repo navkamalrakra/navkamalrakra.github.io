@@ -1,4 +1,5 @@
 // Async functions are chained as : Readfile -> PopulateDataInArrays -> createChart
+// https://stackoverflow.com/questions/59582780/javascript-async-await-and-fetch-return-the-value-not-the-promise
 
 // Read data.txt
 async function readFile() {
