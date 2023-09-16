@@ -5,10 +5,12 @@ postTaxArr = []
 
 // Read data.txt
 async function ReadData() {
-  const response = await fetch("data.txt");
-  const data = await response.text();
-  console.log(data);
-  return data.toString();
+  await fetch('data.txt')
+  .then(response => response.text())
+  .then(text => {
+    console.log(text.toString());
+    return text.toString();
+  })
 }
 
 function PopulateDataInArrays()
