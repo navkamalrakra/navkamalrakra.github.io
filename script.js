@@ -1,4 +1,4 @@
-import { readFile } from 'fs';
+const fs = require('fs');
 readFile('data.txt', (err, inputD) => {
    if (err) throw err;
       console.log(inputD.toString());
