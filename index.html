@@ -1,5 +1,35 @@
 <!DOCTYPE html>
-<meta charset="utf-8">
-<title>Algo Trading Graph</title>
-<meta http-equiv="refresh" content="0; URL=https://docs.google.com/spreadsheets/d/e/2PACX-1vRsbNJdbsqD09NizgG5d0Q0S4_-ex-ADcKe6CiXBV509JqLl8PxXErS7MUKesn9DDqJe6w6LMboQIjM/pubhtml?gid=1847533299&single=true">
-<link rel="canonical" href="https://docs.google.com/spreadsheets/d/e/2PACX-1vRsbNJdbsqD09NizgG5d0Q0S4_-ex-ADcKe6CiXBV509JqLl8PxXErS7MUKesn9DDqJe6w6LMboQIjM/pubhtml?gid=1847533299&single=true">
+<html>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+<body>
+<canvas id="myChart" style="width:90%"></canvas>
+
+<script>
+const xValues = [50,60,70,80,90,100,110,120,130,140,150];
+const yValues = [7,8,8,9,9,9,10,11,14,14,15];
+
+new Chart("myChart", {
+  type: "line",
+  data: {
+    labels: xValues,
+    datasets: [{
+      fill: false,
+      lineTension: 0,
+      backgroundColor: "rgba(0,0,255,1.0)",
+      borderColor: "rgba(0,0,255,0.1)",
+      data: yValues
+    }]
+  },
+  options: {
+    legend: {display: false},
+    scales: {
+      yAxes: [{ticks: {min: 6, max:16}}],
+    }
+  }
+});
+</script>
+
+</body>
+</html>
+
+
