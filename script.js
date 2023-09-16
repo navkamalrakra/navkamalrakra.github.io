@@ -4,7 +4,7 @@ preTaxArr = []
 postTaxArr = []
 
 // Read data.txt
-async function ReadData() {
+function ReadData() {
   Promise.all([
     fetch('data.txt').then(x => x.text())
   ]).then(data => {
