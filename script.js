@@ -8,7 +8,7 @@ async function ReadData() {
   const response = await fetch("data.txt");
   const data = await response.text();
   console.log(data);
-  return data;
+  return data.toString();
 }
 
 function PopulateDataInArrays()
