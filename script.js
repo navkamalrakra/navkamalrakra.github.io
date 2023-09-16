@@ -1,8 +1,19 @@
-import readFile from 'fs';
-readFile('data.txt', (err, inputD) => {
-   if (err) throw err;
-      console.log(inputD.toString());
-})
+reader = new FileReader();
+
+function readFile()
+{
+    var file = document.getElementById("data.txt").files[0];
+    reader.readAsText(file);
+    reader.onload = function(e)
+    {
+        var text = reader.result;
+        console.log(text);
+    }
+
+
+}
+
+readFile();
 
 const xValues = [50,60,70,80,90,100,110,120,130,140,150];
 const yValues = [7,8,8,9,9,9,10,11,14,14,15];
