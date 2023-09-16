@@ -28,14 +28,6 @@ async function PopulateDataInArrays() {
   return [dateArr, preTaxArr, postTaxArr];
 }
 
-Array.prototype.max = function () {
-  return Math.max.apply(null, this);
-};
-
-Array.prototype.min = function () {
-  return Math.min.apply(null, this);
-};
-
 async function createChart() {
   return await PopulateDataInArrays();
 }
@@ -69,6 +61,15 @@ createChart().then(function (dataArrs) {
     },
   });
 });
+
+// Helper callbacks or functions
+Array.prototype.max = function () {
+  return Math.max.apply(null, this);
+};
+
+Array.prototype.min = function () {
+  return Math.min.apply(null, this);
+};
 
 const handleResize = (myChart) => {
   myChart.resize();
