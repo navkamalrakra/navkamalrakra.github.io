@@ -1,15 +1,11 @@
+// Async functions are chained as : Readfile -> PopulateDataInArrays -> createChart
+
 // Read data.txt
 async function readFile() {
   //let response = await fetch("https://raw.githubusercontent.com/navkamalrakra/navkamalrakra.github.io/master/data.txt");
-  let response = await fetch('data.txt');
+  let response = await fetch("data.txt");
   return await response.text();
 }
-
-// // Use promise method to read data.txt
-// readFile().then(function(data){
-//   //console.log(data);
-//   return data;
-// })
 
 async function PopulateDataInArrays() {
   var text = await readFile();
@@ -43,8 +39,7 @@ async function createChart() {
   return await PopulateDataInArrays();
 }
 
-
-createChart().then(function(dataArrs){
+createChart().then(function (dataArrs) {
   var dateArr = dataArrs[0];
   var preTaxArr = dataArrs[1];
   var postTaxArr = dataArrs[2];
@@ -72,7 +67,7 @@ createChart().then(function(dataArrs){
       },
     },
   });
-})
+});
 
 const handleResize = (myChart) => {
   myChart.resize();
