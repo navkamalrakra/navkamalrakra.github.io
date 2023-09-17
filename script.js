@@ -90,11 +90,6 @@ createChart().then(function (dataArrs) {
               size: 16,
             },
           },
-
-          ticks: {
-            min: Math.min(preTaxArr.min(), postTaxArr.min()) - 1,
-            max: Math.max(preTaxArr.max(), postTaxArr.max()) + 1,
-          },
         },
 
         responsive: true,
