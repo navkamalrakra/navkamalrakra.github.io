@@ -3,10 +3,8 @@
 
 // Read data.txt
 async function readFile() {
-  let response = await fetch(
-    "https://raw.githubusercontent.com/navkamalrakra/navkamalrakra.github.io/master/data.txt"
-  );
-  //let response = await fetch("data.txt");
+  //let response = await fetch("https://raw.githubusercontent.com/navkamalrakra/navkamalrakra.github.io/master/data.txt");
+  let response = await fetch("data.txt");
   return await response.text();
 }
 
@@ -61,28 +59,44 @@ createChart().then(function (dataArrs) {
       ],
     },
     options: {
-      layout: {
-        padding: 20,
-      },
-
-      title: {
-        display: true,
-        text: "Portfolio Tracker",
-        font: {
-          size: 54,
+      plugins: {
+        title: {
+          display: true,
+          text: "Algorithmic Trading Performance Tracker",
+          font: {
+            size: 20,
+          },
         },
+      },
+      layout: {
+        autoPadding: true,
       },
 
       scales: {
-        yAxes: [
-          {
+        x: {
+          title: {
             display: true,
-            ticks: {
-              min: Math.min(preTaxArr.min(), postTaxArr.min()) - 1,
-              max: Math.max(preTaxArr.max(), postTaxArr.max()) + 1,
+            text: "Date",
+            font: {
+              size: 16,
             },
           },
-        ],
+        },
+        y: {
+          title: {
+            display: true,
+            text: "Percentage change",
+            font: {
+              size: 16,
+            },
+          },
+
+          ticks: {
+            min: Math.min(preTaxArr.min(), postTaxArr.min()) - 1,
+            max: Math.max(preTaxArr.max(), postTaxArr.max()) + 1,
+          },
+        },
+
         responsive: true,
         maintainAspectRatio: false,
       },
