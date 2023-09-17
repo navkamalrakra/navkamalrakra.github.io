@@ -62,6 +62,8 @@ createChart().then(function (dataArrs) {
       plugins: {
         title: {
           display: true,
+          position: "bottom",
+          autoPadding: true,
           text: "Algorithmic Trading Performance Tracker",
           font: {
             size: 20,
