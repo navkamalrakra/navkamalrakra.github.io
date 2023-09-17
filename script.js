@@ -3,8 +3,10 @@
 
 // Read data.txt
 async function readFile() {
-  //let response = await fetch("https://raw.githubusercontent.com/navkamalrakra/navkamalrakra.github.io/master/data.txt");
-  let response = await fetch("data.txt");
+  let response = await fetch(
+    "https://raw.githubusercontent.com/navkamalrakra/navkamalrakra.github.io/master/data.txt"
+  );
+  //let response = await fetch("data.txt");
   return await response.text();
 }
 
@@ -36,26 +38,52 @@ createChart().then(function (dataArrs) {
   var dateArr = dataArrs[0];
   var preTaxArr = dataArrs[1];
   var postTaxArr = dataArrs[2];
+
   new Chart("myChart", {
     type: "line",
     data: {
       labels: dateArr,
       datasets: [
         {
-          fill: false,
-          lineTension: 0,
-          backgroundColor: "rgba(0,0,255,1.0)",
-          borderColor: "rgba(0,0,255,0.1)",
+          fill: true,
           data: preTaxArr,
+          label: "Pre Tax and misc charges",
+          borderColor: "rgb(60,186,159)",
+          backgroundColor: "rgb(60,186,159,0.1)",
+        },
+        {
+          fill: true,
+          borderColor: "rgb(255,165,0)",
+          backgroundColor: "rgb(255,165,0,0.1)",
+          data: postTaxArr,
+          label: "Post Tax and misc charges",
         },
       ],
     },
     options: {
-      legend: { display: true },
+      layout: {
+        padding: 20,
+      },
+
+      title: {
+        display: true,
+        text: "Portfolio Tracker",
+        font: {
+          size: 54,
+        },
+      },
+
       scales: {
-        yAxes: [{ ticks: { min: preTaxArr.min(), max: preTaxArr.max() } }],
+        yAxes: [
+          {
+            display: true,
+            ticks: {
+              min: Math.min(preTaxArr.min(), postTaxArr.min()) - 1,
+              max: Math.max(preTaxArr.max(), postTaxArr.max()) + 1,
+            },
+          },
+        ],
         responsive: true,
-        onResize: handleResize,
         maintainAspectRatio: false,
       },
     },
@@ -69,8 +97,4 @@ Array.prototype.max = function () {
 
 Array.prototype.min = function () {
   return Math.min.apply(null, this);
-};
-
-const handleResize = (myChart) => {
-  myChart.resize();
 };
