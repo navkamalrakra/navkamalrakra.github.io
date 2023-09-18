@@ -59,16 +59,18 @@ createChart().then(function (dataArrs) {
       ],
     },
     options: {
+      responsive: true,
+      maintainAspectRatio: false,
       plugins: {
-        title: {
-          display: true,
-          position: "bottom",
-          autoPadding: true,
-          text: "Algorithmic Trading Performance Tracker",
-          font: {
-            size: 20,
-          },
-        },
+        // title: {
+        //   display: true,
+        //   position: "bottom",
+        //   autoPadding: true,
+        //   text: "Algorithmic Trading Performance Tracker",
+        //   font: {
+        //     size: 20,
+        //   },
+        // },
       },
       layout: {
         autoPadding: true,
@@ -93,9 +95,6 @@ createChart().then(function (dataArrs) {
             },
           },
         },
-
-        responsive: true,
-        maintainAspectRatio: false,
       },
     },
   });
