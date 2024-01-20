@@ -1,5 +1,6 @@
-.chart-container{
-    position: relative;
-    width: 98vw;
-    height: 98vh;
- }
+img {
+    max-inline-size: 100%;
+    block-size: auto;
+    aspect-ratio: 2/1;
+    object-fit: cover;
+}
