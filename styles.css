@@ -1,5 +1,5 @@
 img {
     max-inline-size: 100%;
-    object-fit: cover;
+    object-fit: contain;
     object-position: top center;
 }
